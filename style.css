@@ -1,0 +1,205 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'VT323', monospace;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+}
+
+main {
+  height: 80vh;
+  display: grid;
+  grid-template-areas:
+    'A A A'
+    'B C D';
+  grid-template-columns: 15vw 1fr 15vw;
+  gap: 1rem;
+}
+
+header {
+  height: 10vh;
+  grid-area: A;
+  background-color: gray;
+}
+
+header h1 {
+  text-align: center;
+  padding-top: 0.5rem;
+  font-size: 3rem;
+}
+
+section.playGround {
+  height: 65vh;
+  grid-area: C;
+  background-color: aquamarine;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7rem;
+  border-radius: 0.5rem;
+}
+
+.roundResult {
+  position: absolute;
+  left: 50%;
+  top: 40%;
+}
+
+section.playGround .enemyOption {
+  color: white;
+  width: 8rem;
+  height: 8rem;
+  background-color: black;
+  margin-top: 1rem;
+  border-radius: 0.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+section.playGround .playerOptions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding-bottom: 0.5rem;
+}
+
+section.playGround .playerOptions .rock {
+  position: relative;
+  bottom: 0;
+  width: 8rem;
+  height: 8rem;
+  border-radius: 0.8rem;
+  background-color: lightgreen;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  transition: 500ms;
+}
+
+section.playGround .playerOptions .rock.selected {
+  bottom: 20px;
+}
+
+section.playGround .playerOptions .papper {
+  position: relative;
+  bottom: 0;
+  width: 8rem;
+  height: 8rem;
+  border-radius: 0.8rem;
+  background-color: lightgreen;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  transition: 500ms;
+}
+
+section.playGround .playerOptions .papper.selected {
+  bottom: 20px;
+}
+
+section.playGround .playerOptions .scissor {
+  position: relative;
+  bottom: 0;
+  width: 8rem;
+  height: 8rem;
+  border-radius: 0.8rem;
+  background-color: lightgreen;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  transition: 500ms;
+}
+
+section.playGround .playerOptions .scissor.selected {
+  bottom: 20px;
+}
+
+section.score {
+  height: 65vh;
+  grid-area: B;
+  background-color: blueviolet;
+  text-align: center;
+  border-radius: 0.5rem;
+}
+
+section.score h2:first-child {
+  font-size: 2rem;
+  margin-block: 1rem 0.5rem;
+}
+
+section.score h2:nth-child(3) {
+  font-size: 2rem;
+  margin-block: 1rem 0.5rem;
+}
+
+section.lastPlay {
+  height: 65vh;
+  grid-area: D;
+  background-color: brown;
+  text-align: center;
+  border-radius: 0.5rem;
+}
+
+section.lastPlay h2 {
+  font-size: 2rem;
+  margin-block: 1rem 1rem;
+}
+
+section.buttons {
+  height: 10vh;
+  width: 40%;
+  margin-inline: auto auto;
+  background-color: gray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+section.buttons button {
+  width: 30%;
+  padding: 0.6rem;
+  text-align: center;
+  word-wrap: normal;
+  border-radius: 0.5rem;
+  border: none;
+  font-size: 1.2rem
+}
+
+footer {
+  height: 10vh;
+  width: 100%;
+  background-color: blue;
+  text-align: center;
+  padding-block: 0.5rem 0.5rem;
+}
+
+footer address {
+  font-size: 1.2rem;
+}
+
+footer ul {
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+  padding-top: 0.5rem;
+  list-style: none;
+}
+
+footer ul li a {
+  text-decoration: none;
+}
+
+footer ul li a i {
+  color: black;
+  font-size: 1.5rem;
+}
