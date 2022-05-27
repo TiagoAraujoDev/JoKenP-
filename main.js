@@ -15,23 +15,25 @@ const result = document.querySelector('.roundResult');
 const modalCloseButton = document.querySelector('.modalButton');
 const modal = document.querySelector('.modal');
 const matchResult = document.querySelector('.matchResult');
+const switchToggle = document.querySelector('.switch');
 
 let playerScoreCounter = 0;
 let enemyScoreCounter = 0;
+let selectedPlay;
 
 playerScore.innerHTML = 0;
 enemyScore.innerHTML = 0;
-
-let selectedPlay;
 
 function resetMatch() {
   playerScoreCounter = 0;
   enemyScoreCounter = 0;
   updateScore();
+  selectedPlay = undefined;
   rockOption.classList.remove('selected');
   papperOption.classList.remove('selected');
   scissorOption.classList.remove('selected');
-  result.innerText = '';
+  result.innerText = ``;
+  enemyOption.innerHTML = ``;
 }
 
 function updateScore() {
@@ -44,9 +46,11 @@ function checkWinner() {
   if (playerScoreCounter === 3 || enemyScoreCounter === 3) {
     modal.classList.add('active');
     if (playerScoreCounter === 3) {
-      matchResult.innerHTML = 'Congratulations! You are the winner!';
+      matchResult.innerHTML = `<p style="text-align: center">Congratulations! You are the winner!</p>`;
+      lastScore.innerHTML += `<p>${playerScore.outerText} x ${enemyScore.outerText}</p>`;
     } else {
-      matchResult.innerHTML = 'Oh no, You lost!';
+      matchResult.innerHTML = `<p style="text-align: center">Oh no, You lost!</p>`;
+      lastScore.innerHTML += `<p>${playerScore.outerText} x ${enemyScore.outerText}</p>`;
     }
   } else if (
     (playerScoreCounter === 2 && enemyScoreCounter === 0) ||
@@ -54,12 +58,53 @@ function checkWinner() {
   ) {
     modal.classList.add('active');
     if (playerScoreCounter === 2) {
-      matchResult.innerHTML = 'Congratulations! You are the winner!';
+      matchResult.innerHTML = `<p style="text-align: center">Congratulations! You are the winner!</p>`;
+      lastScore.innerHTML += `<p>${playerScore.outerText} x ${enemyScore.outerText}</p>`;
     } else {
-      matchResult.innerHTML = 'Oh no, You lost!';
+      matchResult.innerHTML = `<p style="text-align: center">Oh no, You lost!</p>`;
+      lastScore.innerHTML += `<p>${playerScore.outerText} x ${enemyScore.outerText}</p>`;
     }
   }
 }
+
+rockOption.addEventListener('click', () => {
+  if (selectedPlay === 'rock') {
+    selectedPlay = undefined;
+    rockOption.classList.remove('selected');
+  } else {
+    selectedPlay = rockOption.outerText;
+    rockOption.classList.toggle('selected');
+    papperOption.classList.remove('selected');
+    scissorOption.classList.remove('selected');
+    console.log(selectedPlay);
+  }
+});
+
+papperOption.addEventListener('click', () => {
+  if (selectedPlay === 'papper') {
+    selectedPlay = undefined;
+    papperOption.classList.remove('selected');
+  } else {
+    selectedPlay = papperOption.outerText;
+    papperOption.classList.toggle('selected');
+    rockOption.classList.remove('selected');
+    scissorOption.classList.remove('selected');
+    console.log(selectedPlay);
+  }
+});
+
+scissorOption.addEventListener('click', () => {
+  if (selectedPlay === 'scissor') {
+    selectedPlay = undefined;
+    scissorOption.classList.remove('selected');
+  } else {
+    selectedPlay = scissorOption.outerText;
+    scissorOption.classList.toggle('selected');
+    rockOption.classList.remove('selected');
+    papperOption.classList.remove('selected');
+    console.log(selectedPlay);
+  }
+});
 
 modalCloseButton.addEventListener('click', () => {
   resetMatch();
@@ -68,53 +113,46 @@ modalCloseButton.addEventListener('click', () => {
 
 resetPlayButton.addEventListener('click', resetMatch);
 
-rockOption.addEventListener('click', () => {
-  selectedPlay = rockOption.outerText;
-  rockOption.classList.toggle('selected');
-  papperOption.classList.remove('selected');
-  scissorOption.classList.remove('selected');
-  console.log(selectedPlay);
-});
-
-papperOption.addEventListener('click', () => {
-  selectedPlay = papperOption.outerText;
-  papperOption.classList.toggle('selected');
-  rockOption.classList.remove('selected');
-  scissorOption.classList.remove('selected');
-  console.log(selectedPlay);
-});
-
-scissorOption.addEventListener('click', () => {
-  selectedPlay = scissorOption.outerText;
-  scissorOption.classList.toggle('selected');
-  rockOption.classList.remove('selected');
-  papperOption.classList.remove('selected');
-  console.log(selectedPlay);
-});
-
 const optionsForEnemyPlay = ['rock', 'papper', 'scissor'];
 
 playButton.addEventListener('click', roundPlay);
 
 function roundPlay() {
-  const index = Math.floor(Math.random() * optionsForEnemyPlay.length);
-  const enemyPlay = optionsForEnemyPlay[index];
-  enemyOption.innerHTML = enemyPlay;
-
-  let isWin =
-    (selectedPlay == 'papper' && enemyPlay == 'rock') ||
-    (selectedPlay == 'scissor' && enemyPlay == 'papper') ||
-    (selectedPlay == 'rock' && enemyPlay == 'scissor');
-
-  if (selectedPlay == enemyPlay) {
-    result.innerText = 'Draw';
-  } else if (isWin) {
-    result.innerText = 'Win';
-    playerScoreCounter += 1;
-    updateScore();
+  if (selectedPlay === undefined) {
+    modal.classList.add('active');
+    matchResult.innerHTML = `<p style="color: red;text-align: center">INVALID PLAY! Select an option!</p>`;
   } else {
-    result.innerText = 'Fail';
-    enemyScoreCounter += 1;
-    updateScore();
+    const index = Math.floor(Math.random() * optionsForEnemyPlay.length);
+    const enemyPlay = optionsForEnemyPlay[index];
+    enemyOption.innerHTML = enemyPlay;
+    enemyLastPlay.innerText = enemyPlay;
+    playerLastPlay.innerText = selectedPlay;
+
+    let isWin =
+      (selectedPlay == 'papper' && enemyPlay == 'rock') ||
+      (selectedPlay == 'scissor' && enemyPlay == 'papper') ||
+      (selectedPlay == 'rock' && enemyPlay == 'scissor');
+
+    if (selectedPlay == enemyPlay) {
+      result.innerHTML = `<p>Draw</p>`;
+    } else if (isWin) {
+      result.innerHTML = `<p>Win</p>`;
+      playerScoreCounter += 1;
+      updateScore();
+    } else {
+      result.innerHTML = `<p>Fail</p>`;
+      enemyScoreCounter += 1;
+      updateScore();
+    }
   }
 }
+
+newPlayButton.addEventListener('click', () => {
+  resetMatch();
+  lastScore.innerHTML = ``;
+});
+
+switchToggle.addEventListener('click', () => {
+  const body = document.querySelector('body');
+  body.classList.toggle('lightMode');
+})

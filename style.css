@@ -5,9 +5,42 @@
   font-family: 'VT323', monospace;
 }
 
+:root {
+  --primaryColor: #1c1917;
+  --secondaryColor: #44403c;
+  --lightColor: #78716c;
+  --extraLightColor: #d4d4d4;
+  --almostWhite: #e5e5e5;
+  --kindOfWhite: #fafafa;
+  --textColor: #f1f5f9;
+  --textHover: #1c1917;
+  --bgHover: #d4d4d4;
+  --detailColor: #581c87;
+  --toggle: #fafafa;
+  --switch: #1c1917;
+}
+
 body {
   width: 100%;
   height: 100vh;
+  background-color: var(--primaryColor);
+  transition: all 1s ease;
+}
+
+body.lightMode {
+  --primaryColor: #fafafa;
+  --secondaryColor: #e5e5e5;
+  --lightColor: #7e22ce;
+  --extraLightColor: #78716c;
+  --almostWhite: #44403c;
+  --kindOfWhite: #1c1917;
+  --textColor: #1c1917;
+  --textHover: #d4d4d4;
+  --bgHover: #44403c;
+  --detailColor: #7e22ce;
+  --toggle: #1c1917;
+  --switch: #fafafa;
+
 }
 
 main {
@@ -23,39 +56,123 @@ main {
 header {
   height: 10vh;
   grid-area: A;
-  background-color: gray;
+  background-color: var(--secondaryColor);
+  border-bottom: 0.3rem solid var(--detailColor);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: 2rem;
 }
 
 header h1 {
   text-align: center;
   padding-top: 0.5rem;
   font-size: 3rem;
+  color: var(--textColor);
 }
+
+header .mode {
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  gap: 0.7rem;
+}
+
+header .mode i {
+  position: absolute;
+  right: 7%;
+  color: var(--toggle);
+}
+
+header .mode i.moon {
+  font-size: 1.5rem;
+  opacity: 0;
+}
+
+body.lightMode header .mode i.moon {
+  opacity: 1;
+}
+
+header .mode i.sun {
+  font-size: 1.5rem;
+}
+
+body.lightMode header .mode i.sun {
+  opacity: 0;
+}
+header .toggle {
+  width: 3rem;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: blue;
+}
+
+header .toggle span.switch {
+  position: absolute;
+  width: 3rem;
+  height: 1.4rem;
+  border-radius: 10rem;
+  background-color: var(--kindOfWhite);
+}
+
+header .toggle span.switch::before {
+  content: '';
+  position: absolute;
+  width: 1rem;
+  height: 1rem;
+  background-color: var(--switch);
+  top: 50%;
+  left: 0.4rem;
+  border-radius: 50%;
+  transform: translateY(-50%); 
+  transition: 700ms ease;
+}
+
+body.lightMode header .toggle span.switch::before {
+  left: 1.5rem;
+} 
 
 section.playGround {
   height: 65vh;
   grid-area: C;
-  background-color: aquamarine;
+  background-color: var(--secondaryColor);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 7rem;
+  gap: 8rem;
   border-radius: 0.5rem;
+  border: 0.1rem solid var(--kindOfWhite);
 }
 
 .roundResult {
   position: absolute;
   left: 50%;
-  top: 40%;
+  top: 45%;
+  transform: translate(-50%, -50%);
+}
+
+.roundResult p {
+  font-size: 2rem;
+  width: fit-content;
+  color: var(--textColor);
+  box-shadow: 0px 0px 5px var(--extraLightColor) ;
+  border-radius: 0.5rem;
+  padding: 0.4rem;
+  background-color: var(--secondaryColor);
 }
 
 section.playGround .enemyOption {
-  color: white;
+  color: var(--textColor);
+  font-size: 2rem;
   width: 8rem;
   height: 8rem;
-  background-color: black;
+  background-color: var(--lightColor);
   margin-top: 1rem;
   border-radius: 0.8rem;
+  border: 0.1rem solid var(--detailColor);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -75,12 +192,14 @@ section.playGround .playerOptions .rock {
   width: 8rem;
   height: 8rem;
   border-radius: 0.8rem;
-  background-color: lightgreen;
+  border: 0.1rem solid var(--detailColor);
+  background-color: var(--lightColor);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 2rem;
   transition: 500ms;
+  color: var(--textColor);
 }
 
 section.playGround .playerOptions .rock.selected {
@@ -93,12 +212,14 @@ section.playGround .playerOptions .papper {
   width: 8rem;
   height: 8rem;
   border-radius: 0.8rem;
-  background-color: lightgreen;
+  border: 0.1rem solid var(--detailColor);
+  background-color: var(--lightColor);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 2rem;
   transition: 500ms;
+  color: var(--textColor);
 }
 
 section.playGround .playerOptions .papper.selected {
@@ -111,12 +232,14 @@ section.playGround .playerOptions .scissor {
   width: 8rem;
   height: 8rem;
   border-radius: 0.8rem;
-  background-color: lightgreen;
+  border: 0.1rem solid var(--detailColor);
+  background-color: var(--lightColor);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 2rem;
   transition: 500ms;
+  color: var(--textColor);
 }
 
 section.playGround .playerOptions .scissor.selected {
@@ -126,51 +249,112 @@ section.playGround .playerOptions .scissor.selected {
 section.score {
   height: 65vh;
   grid-area: B;
-  background-color: blueviolet;
+  background-color: var(--secondaryColor);
   text-align: center;
+  border: 0.1rem solid var(--kindOfWhite);
   border-radius: 0.5rem;
+}
+
+section.score p {
+  color: var(--textColor);
+  font-size: 2rem;
 }
 
 section.score h2:first-child {
   font-size: 2rem;
   margin-block: 1rem 0.5rem;
+  color: var(--textColor);
 }
 
 section.score p #playerScore {
-  color: black;
-  font-size: 3rem;
+  color: var(--textColor);
+  font-size: 2.5rem;
   padding-right: 1rem;
 }
 
 section.score h2:nth-child(3) {
   font-size: 2rem;
   margin-block: 1rem 0.5rem;
+  color: var(--textColor);
 }
 
 section.score p #enemyScore {
-  color: black;
-  font-size: 3rem;
+  color: var(--textColor);
+  font-size: 2.5rem;
   padding-left: 1rem;
+}
+
+section.score #lastScore {
+  height: 15rem;
+  font-size: 1.5rem;
+  overflow: auto;
+}
+
+section.score #lastScore::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+section.score #lastScore::-webkit-scrollbar-track {
+  border-radius: 0.7rem;
+  background-color: var(--primaryColor);
+}
+
+section.score #lastScore::-webkit-scrollbar-thumb {
+  background-color: var(--extraLightColor);
+  border-radius: 0.7rem;
 }
 
 section.lastPlay {
   height: 65vh;
   grid-area: D;
-  background-color: brown;
+  background-color: var(--secondaryColor);
   text-align: center;
+  border: 0.1rem solid var(--kindOfWhite);
   border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
 }
 
 section.lastPlay h2 {
   font-size: 2rem;
   margin-block: 1rem 1rem;
+  color: var(--textColor);
+}
+
+section.lastPlay p {
+  color: var(--textColor);
+}
+
+section.lastPlay #enemyLastPlay {
+  width: 5rem;
+  height: 5rem;
+  background-color: var(--lightColor);
+  color: var(--textColor);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.5rem;
+  border: 0.1rem solid var(--detailColor);
+}
+
+section.lastPlay #playerLastPlay {
+  width: 5rem;
+  height: 5rem;
+  background-color: var(--lightColor);
+  color: var(--textColor);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.5rem;
+  border: 0.1rem solid var(--detailColor);
 }
 
 section.buttons {
   height: 10vh;
   width: 40%;
   margin-inline: auto auto;
-  background-color: gray;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -184,19 +368,28 @@ section.buttons button {
   word-wrap: normal;
   border-radius: 0.5rem;
   border: none;
-  font-size: 1.2rem
+  font-size: 1.2rem;
+  color: var(--textColor);
+  background-color: var(--lightColor);
+  transition: 500ms ease;
+}
+
+section.buttons button:hover {
+  color: var(--textHover);
+  background-color: var(--bgHover);
 }
 
 footer {
   height: 10vh;
   width: 100%;
-  background-color: blue;
+  background-color: var(--secondaryColor);
   text-align: center;
   padding-block: 0.5rem 0.5rem;
 }
 
 footer address {
   font-size: 1.2rem;
+  color: var(--textColor);
 }
 
 footer ul {
@@ -212,7 +405,7 @@ footer ul li a {
 }
 
 footer ul li a i {
-  color: black;
+  color: var(--lightColor);
   font-size: 1.5rem;
 }
 
@@ -238,7 +431,7 @@ section.modal .container {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgb(140, 127, 255);
+  background-color: var(--primaryColor);
   border-radius: 0.4rem;
 }
 
@@ -247,6 +440,7 @@ section.modal .container i {
   right: 5%;
   top: 10%;
   font-size: 2rem;
+  color: var(--almostWhite);
 }
 
 section.modal .container .matchResult {
@@ -256,9 +450,12 @@ section.modal .container .matchResult {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  background-color: gray;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 2rem;
+}
+
+section.modal .container .matchResult p {
+  color: var(--textColor);
 }
