@@ -24,23 +24,22 @@ body {
   width: 100%;
   height: 100vh;
   background-color: var(--primaryColor);
-  transition: all 1s ease;
+  transition: all 500ms ease;
 }
 
 body.lightMode {
   --primaryColor: #fafafa;
   --secondaryColor: #e5e5e5;
-  --lightColor: #7e22ce;
+  --lightColor: #0fd123;
   --extraLightColor: #78716c;
   --almostWhite: #44403c;
   --kindOfWhite: #1c1917;
   --textColor: #1c1917;
-  --textHover: #d4d4d4;
-  --bgHover: #44403c;
-  --detailColor: #7e22ce;
+  --textHover: #0fd123;
+  --bgHover: #d4d4d4;
+  --detailColor: #0fd123;
   --toggle: #1c1917;
   --switch: #fafafa;
-
 }
 
 main {
@@ -50,38 +49,47 @@ main {
     'A A A'
     'B C D';
   grid-template-columns: 15vw 1fr 15vw;
-  gap: 1rem;
+  gap: 0.5rem;
 }
 
 header {
   height: 10vh;
-  grid-area: A;
   background-color: var(--secondaryColor);
   border-bottom: 0.3rem solid var(--detailColor);
+  grid-area: A;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding-inline: 2rem;
+  transition: all 500ms ease;
 }
 
 header h1 {
+  color: var(--textColor);
+  font-size: 3rem;
   text-align: center;
   padding-top: 0.5rem;
-  font-size: 3rem;
-  color: var(--textColor);
+  transition: all 500ms ease;
 }
 
 header .mode {
+  position: relative;
   display: flex;
   justify-content: center;
-  align-items: center; 
+  align-items: center;
   gap: 0.7rem;
+}
+
+header .mode i.moon-sun {
+  position: relative;
+  color: var(--toggle);
+  transition: all 500ms ease;
 }
 
 header .mode i {
   position: absolute;
-  right: 7%;
-  color: var(--toggle);
+  right: 70%;
+  transform: translate(-50%, -50%);
 }
 
 header .mode i.moon {
@@ -102,38 +110,40 @@ body.lightMode header .mode i.sun {
 }
 header .toggle {
   width: 3rem;
+  height: 1.4rem;
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  background-color: blue;
+  border-radius: 14rem;
 }
 
 header .toggle span.switch {
   position: absolute;
   width: 3rem;
   height: 1.4rem;
-  border-radius: 10rem;
+  border-radius: 20rem;
   background-color: var(--kindOfWhite);
+  transition: all 500ms ease;
 }
 
 header .toggle span.switch::before {
   content: '';
   position: absolute;
+  top: 50%;
+  left: 0.4rem;
   width: 1rem;
   height: 1rem;
   background-color: var(--switch);
-  top: 50%;
-  left: 0.4rem;
   border-radius: 50%;
-  transform: translateY(-50%); 
+  transform: translateY(-50%);
   transition: 700ms ease;
 }
 
 body.lightMode header .toggle span.switch::before {
-  left: 1.5rem;
-} 
+  left: 1.55rem;
+}
 
 section.playGround {
   height: 65vh;
@@ -142,9 +152,9 @@ section.playGround {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8rem;
-  border-radius: 0.5rem;
+  justify-content: space-around;
   border: 0.1rem solid var(--kindOfWhite);
+  transition: all 500ms ease;
 }
 
 .roundResult {
@@ -152,30 +162,33 @@ section.playGround {
   left: 50%;
   top: 45%;
   transform: translate(-50%, -50%);
+  transition: all 500ms ease;
 }
 
 .roundResult p {
+  background-color: var(--secondaryColor);
+  color: var(--textColor);
   font-size: 2rem;
   width: fit-content;
-  color: var(--textColor);
-  box-shadow: 0px 0px 5px var(--extraLightColor) ;
-  border-radius: 0.5rem;
   padding: 0.4rem;
-  background-color: var(--secondaryColor);
+  border-radius: 0.5rem;
+  box-shadow: 0px 0px 5px var(--extraLightColor);
+  transition: all 500ms ease;
 }
 
 section.playGround .enemyOption {
+  background-color: var(--lightColor);
   color: var(--textColor);
   font-size: 2rem;
-  width: 8rem;
-  height: 8rem;
-  background-color: var(--lightColor);
+  width: 6rem;
+  height: 5rem;
   margin-top: 1rem;
-  border-radius: 0.8rem;
+  border-radius: 0.5rem;
   border: 0.1rem solid var(--detailColor);
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: all 500ms ease;
 }
 
 section.playGround .playerOptions {
@@ -183,15 +196,14 @@ section.playGround .playerOptions {
   align-items: center;
   justify-content: center;
   gap: 0.6rem;
-  padding-bottom: 0.5rem;
 }
 
 section.playGround .playerOptions .rock {
   position: relative;
   bottom: 0;
-  width: 8rem;
-  height: 8rem;
-  border-radius: 0.8rem;
+  width: 6rem;
+  height: 5rem;
+  border-radius: 0.5rem;
   border: 0.1rem solid var(--detailColor);
   background-color: var(--lightColor);
   display: flex;
@@ -200,18 +212,21 @@ section.playGround .playerOptions .rock {
   font-size: 2rem;
   transition: 500ms;
   color: var(--textColor);
+  opacity: 0.4;
+  cursor: pointer;
 }
 
 section.playGround .playerOptions .rock.selected {
   bottom: 20px;
+  opacity: 1;
 }
 
 section.playGround .playerOptions .papper {
   position: relative;
   bottom: 0;
-  width: 8rem;
-  height: 8rem;
-  border-radius: 0.8rem;
+  width: 6rem;
+  height: 5rem;
+  border-radius: 0.5rem;
   border: 0.1rem solid var(--detailColor);
   background-color: var(--lightColor);
   display: flex;
@@ -220,18 +235,21 @@ section.playGround .playerOptions .papper {
   font-size: 2rem;
   transition: 500ms;
   color: var(--textColor);
+  opacity: 0.4;
+  cursor: pointer;
 }
 
 section.playGround .playerOptions .papper.selected {
   bottom: 20px;
+  opacity: 1;
 }
 
 section.playGround .playerOptions .scissor {
   position: relative;
   bottom: 0;
-  width: 8rem;
-  height: 8rem;
-  border-radius: 0.8rem;
+  width: 6rem;
+  height: 5rem;
+  border-radius: 0.5rem;
   border: 0.1rem solid var(--detailColor);
   background-color: var(--lightColor);
   display: flex;
@@ -240,10 +258,13 @@ section.playGround .playerOptions .scissor {
   font-size: 2rem;
   transition: 500ms;
   color: var(--textColor);
+  opacity: 0.4;
+  cursor: pointer;
 }
 
 section.playGround .playerOptions .scissor.selected {
   bottom: 20px;
+  opacity: 1;
 }
 
 section.score {
@@ -252,42 +273,48 @@ section.score {
   background-color: var(--secondaryColor);
   text-align: center;
   border: 0.1rem solid var(--kindOfWhite);
-  border-radius: 0.5rem;
+  transition: all 500ms ease;
 }
 
 section.score p {
   color: var(--textColor);
   font-size: 2rem;
+  transition: all 500ms ease;
 }
 
 section.score h2:first-child {
   font-size: 2rem;
   margin-block: 1rem 0.5rem;
   color: var(--textColor);
+  transition: all 500ms ease;
 }
 
 section.score p #playerScore {
   color: var(--textColor);
   font-size: 2.5rem;
   padding-right: 1rem;
+  transition: all 500ms ease;
 }
 
 section.score h2:nth-child(3) {
   font-size: 2rem;
   margin-block: 1rem 0.5rem;
   color: var(--textColor);
+  transition: all 500ms ease;
 }
 
 section.score p #enemyScore {
   color: var(--textColor);
   font-size: 2.5rem;
   padding-left: 1rem;
+  transition: all 500ms ease;
 }
 
 section.score #lastScore {
   height: 15rem;
   font-size: 1.5rem;
   overflow: auto;
+  transition: all 500ms ease;
 }
 
 section.score #lastScore::-webkit-scrollbar {
@@ -310,21 +337,23 @@ section.lastPlay {
   background-color: var(--secondaryColor);
   text-align: center;
   border: 0.1rem solid var(--kindOfWhite);
-  border-radius: 0.5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  transition: all 500ms ease;
 }
 
 section.lastPlay h2 {
   font-size: 2rem;
   margin-block: 1rem 1rem;
   color: var(--textColor);
+  transition: all 500ms ease;
 }
 
 section.lastPlay p {
   color: var(--textColor);
+  transition: all 500ms ease;
 }
 
 section.lastPlay #enemyLastPlay {
@@ -337,6 +366,7 @@ section.lastPlay #enemyLastPlay {
   align-items: center;
   border-radius: 0.5rem;
   border: 0.1rem solid var(--detailColor);
+  transition: all 500ms ease;
 }
 
 section.lastPlay #playerLastPlay {
@@ -349,6 +379,7 @@ section.lastPlay #playerLastPlay {
   align-items: center;
   border-radius: 0.5rem;
   border: 0.1rem solid var(--detailColor);
+  transition: all 500ms ease;
 }
 
 section.buttons {
@@ -371,7 +402,7 @@ section.buttons button {
   font-size: 1.2rem;
   color: var(--textColor);
   background-color: var(--lightColor);
-  transition: 500ms ease;
+  transition: all 500ms ease;
 }
 
 section.buttons button:hover {
@@ -384,19 +415,22 @@ footer {
   width: 100%;
   background-color: var(--secondaryColor);
   text-align: center;
-  padding-block: 0.5rem 0.5rem;
+  padding-block: 0.1rem 0.1rem;
+  border-top: 0.3rem solid var(--detailColor);
+  transition: all 500ms ease;
 }
 
 footer address {
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: var(--textColor);
+  margin-bottom: 0.5rem;
+  transition: all 500ms ease;
 }
 
 footer ul {
   display: flex;
   justify-content: center;
   gap: 0.8rem;
-  padding-top: 0.5rem;
   list-style: none;
 }
 
@@ -458,4 +492,79 @@ section.modal .container .matchResult {
 
 section.modal .container .matchResult p {
   color: var(--textColor);
+}
+
+@media (max-width: 768px) {
+  section.buttons button {
+    min-width: fit-content;
+  }
+  footer ul li a i {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 425px) {
+  body {
+    width: 100vw;
+  }
+  section.playGround .enemyOption {
+    width: fit-content;
+    height: fit-content;
+  }
+  section.playGround .playerOptions .rock {
+    width: fit-content;
+    height: fit-content;
+  }
+  section.playGround .playerOptions .papper {
+    width: fit-content;
+    height: fit-content;
+  }
+  section.playGround .playerOptions .scissor {
+    width: fit-content;
+    height: fit-content;
+  }
+  section.score h2:first-child,
+  section.score h2:nth-child(3),
+  section.score p,
+  section.score span#enemyScore,
+  section.score span#playerScore{
+    font-size: 1rem;
+  }
+  section.lastPlay h2 {
+    font-size: 1rem;
+  }
+  section.lastPlay #enemyLastPlay,
+  section.lastPlay #playerLastPlay {
+    width: fit-content;
+    height: fit-content;
+  }
+}
+
+@media (max-width: 375px) {
+  main {
+    gap: 0;
+  }
+}
+@media (max-width: 320px) {
+  section.playGround {
+    justify-content: space-between;
+  }
+  section.playGround .playerOptions {
+    flex-direction: column;
+  }
+  section.playGround .playerOptions .scissor.selected {
+    bottom: 0;
+  }
+  section.playGround .playerOptions .papper.selected {
+    bottom: 0;
+  }
+  section.playGround .playerOptions .rock.selected {
+    bottom: 0;
+  }
+  section.score p #enemyScore {
+    padding: 0.2rem;
+  }
+  section.score p #playerScore {
+    padding: 0.2rem;
+  }
 }
