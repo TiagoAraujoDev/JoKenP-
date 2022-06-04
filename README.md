@@ -19,9 +19,9 @@ Besides, it's good to have an editor to work with the code like [VSCode](https:/
 
 <h3 id="objetivo">🎯 Goals</h3>
 
-- Getting better at programming in the only way it works...practicing
+- Getting better at programming in the only way that works... by practicing
 - 05/26 => I already made the HTML structure and most of the CSS (of course I'm gonna change colors and other things and add some effects, but for now It's good). In Javascript I did almost all the core logic of the game.
-- 05/28 => Game complete. Has minor changes in the responsiveness, but overall it's quite good. I apply some of my knowledge in Javascript in this project, the switch for change to a light theme and switch back for the dark theme, transitions in CSS to make all animations smooth and javascript was applied to make everything work as planned like you can only click the play button if you select a option. I had a great time building this game and in the future i'll made some improvements and add some features.
+- 05/28 => Game complete. Has minor changes in the responsiveness, but overall it's quite good. I apply some of my knowledge in Javascript in this project like the switch for change themes, transitions in CSS to make all animations smooth and javascript for make everything work as planned. For example, the play button is only available if a play option has been previously selected. I had a great time building this game and in the future I'll make some improvements and add some features.
   
 <h3 id="tecnologias">🛠 technologies</h3>
 
